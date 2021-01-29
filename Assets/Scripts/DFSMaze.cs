@@ -13,7 +13,7 @@ public class DFSMaze : Maze
     public override void Generate()
     {
         startX = Random.Range(1, width-1);
-        startZ = Random.Range(1, depth-1);
+        startZ = 1; //Random.Range(1, depth-1);
         goalLocation = new MapLocation(startX, startZ);
         longestPathLength = 0;
         Generate(startX, startZ, 0);

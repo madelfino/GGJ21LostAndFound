@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 165127931}
   - component: {fileID: 165127930}
   m_Layer: 5
-  m_Name: RawImage
+  m_Name: Minimap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -840,7 +840,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   width: 5
-  depth: 10
+  depth: 5
   scale: 3
   straight: {fileID: 7404794181185492055, guid: f169202cd06c2cc46ba7b10e17e40aa5,
     type: 3}
@@ -851,4 +851,4 @@ MonoBehaviour:
     type: 3}
   deadend: {fileID: 4917953362305775899, guid: 6c26431d290eaf543ac1e34e99f66f69, type: 3}
   player: {fileID: 7288806970513608938, guid: bab468fb4f7f55c469721851e83833b1, type: 3}
-  goal: {fileID: 9172507204959836115, guid: b4f3d8e716d5735458704fba3fbc690e, type: 3}
+  goal: {fileID: 6287592848896015429, guid: 97a3f96a5d0dddb4aa033eb2601a3aeb, type: 3}
