@@ -71,7 +71,7 @@ public class Maze : MonoBehaviour
             x = Random.Range(1, width - 1);
             z = Random.Range(1, depth - 1);
         }
-        Instantiate(goal, new Vector3(x * scale, 0.5f * scale, z * scale), Quaternion.identity);
+        Instantiate(goal, new Vector3(x * scale, 0, z * scale), Quaternion.identity);
     }
 
     void InitializeMap()

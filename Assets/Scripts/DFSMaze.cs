@@ -46,6 +46,6 @@ public class DFSMaze : Maze
 
     public override void CreateGoal()
     {
-        Instantiate(goal, new Vector3(goalLocation.x * scale, 0.5f * scale, goalLocation.z * scale), Quaternion.identity);
+        Instantiate(goal, new Vector3(goalLocation.x * scale, 0, goalLocation.z * scale), Quaternion.identity);
     }
 }
