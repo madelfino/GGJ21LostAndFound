@@ -458,3 +458,4 @@ MonoBehaviour:
     type: 3}
   deadend: {fileID: 4917953362305775899, guid: 6c26431d290eaf543ac1e34e99f66f69, type: 3}
   player: {fileID: 7288806970513608938, guid: bab468fb4f7f55c469721851e83833b1, type: 3}
+  goal: {fileID: 6691382736740385032, guid: c999934d0746c224ca758bd173e87087, type: 3}

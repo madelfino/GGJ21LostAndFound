@@ -37,6 +37,7 @@ public class Maze : MonoBehaviour
     public GameObject deadend;
 
     public GameObject player;
+    public GameObject goal;
 
     // Start is called before the first frame update
     void Start()
@@ -46,6 +47,7 @@ public class Maze : MonoBehaviour
         Generate();
         DrawMap();
         CreatePlayer();
+        CreateGoal();
     }
 
     public virtual void CreatePlayer()
@@ -58,6 +60,18 @@ public class Maze : MonoBehaviour
             z = Random.Range(1, depth - 1);
         }
         Instantiate(player, new Vector3(x * scale, 0.5f * scale, z * scale), Quaternion.identity);
+    }
+
+    public virtual void CreateGoal()
+    {
+        int x = Random.Range(1, width - 1);
+        int z = Random.Range(1, depth - 1);
+        while (map[x, z] != 0)
+        {
+            x = Random.Range(1, width - 1);
+            z = Random.Range(1, depth - 1);
+        }
+        Instantiate(goal, new Vector3(x * scale, 0.5f * scale, z * scale), Quaternion.identity);
     }
 
     void InitializeMap()
