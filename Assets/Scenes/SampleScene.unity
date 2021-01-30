@@ -993,3 +993,5 @@ MonoBehaviour:
   player: {fileID: 7288806970513608938, guid: bab468fb4f7f55c469721851e83833b1, type: 3}
   goal: {fileID: 6287592848896015429, guid: 97a3f96a5d0dddb4aa033eb2601a3aeb, type: 3}
   enemy: {fileID: 7880661732428290800, guid: c176a1e3cb2d3374aa5677c0733b53b6, type: 3}
+  startPad: {fileID: 2784925294604686371, guid: d7dda3716a019ea45bf941ebdc17036b,
+    type: 3}

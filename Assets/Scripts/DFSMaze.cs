@@ -44,6 +44,7 @@ public class DFSMaze : Maze
     public override void CreatePlayer()
     {
         Instantiate(player, new Vector3(startLocation.x * scale, 0.5f * scale, startLocation.z * scale), Quaternion.identity);
+        Instantiate(startPad, new Vector3(startLocation.x * scale, 0, startLocation.z * scale), Quaternion.identity);
     }
 
     public override void CreateEnemy()

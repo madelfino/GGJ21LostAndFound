@@ -39,6 +39,7 @@ public class Maze : MonoBehaviour
     public GameObject player;
     public GameObject goal;
     public GameObject enemy;
+    public GameObject startPad;
     
     public void DestroyMaze()
     {
@@ -50,6 +51,7 @@ public class Maze : MonoBehaviour
         GameObject.Destroy(GameObject.FindGameObjectWithTag("Player"));
         GameObject.Destroy(GameObject.FindGameObjectWithTag("Enemy"));
         GameObject.Destroy(GameObject.FindGameObjectWithTag("Goal"));
+        GameObject.Destroy(GameObject.FindGameObjectWithTag("Respawn"));
     }
 
     public void CreateMaze(Vector2 dim)
@@ -76,6 +78,7 @@ public class Maze : MonoBehaviour
             z = Random.Range(1, depth - 1);
         }
         Instantiate(player, new Vector3(x * scale, 0.5f * scale, z * scale), Quaternion.identity);
+        Instantiate(startPad, new Vector3(x * scale, 0, z * scale), Quaternion.identity);
     }
 
     public virtual void CreateGoal()
