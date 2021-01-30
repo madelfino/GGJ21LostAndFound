@@ -13,11 +13,10 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         levelSizes = new Vector2[] {
-            new Vector2(5,5),
-            new Vector2(5,10),
             new Vector2(10,10),
             new Vector2(15,10),
-            new Vector2(20,20)
+            new Vector2(15,20),
+            new Vector2(30,30),
         };
 
         level = 0;

@@ -49,7 +49,8 @@ public class DFSMaze : Maze
 
     public override void CreateEnemy()
     {
-        Instantiate(enemy, new Vector3(enemyLocation.x * scale, 0.5f, enemyLocation.z * scale), Quaternion.identity);
+        GameObject enemyInst = Instantiate(enemy, new Vector3(enemyLocation.x * scale, 0.5f, enemyLocation.z * scale), Quaternion.identity);
+        enemyInst.GetComponent<Xenotaur>().MoveToLocation(new Vector3(startLocation.x * scale, 0.5f * scale, startLocation.z * scale));
     }
 
     public override void CreateGoal()

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class MapLocation
 {
@@ -40,6 +41,8 @@ public class Maze : MonoBehaviour
     public GameObject goal;
     public GameObject enemy;
     public GameObject startPad;
+
+    private NavMeshSurface[,] navMeshSurfaces; 
     
     public void DestroyMaze()
     {
@@ -60,9 +63,11 @@ public class Maze : MonoBehaviour
         width = (int)dim.x;
         depth = (int)dim.y;
         map = new byte[width, depth];
+        navMeshSurfaces = new NavMeshSurface[width, depth];
         InitializeMap();
         Generate();
         DrawMap();
+        GenerateNavMesh();
         CreatePlayer();
         CreateGoal();
         CreateEnemy();
@@ -131,6 +136,20 @@ public class Maze : MonoBehaviour
         }
     }
 
+    public void GenerateNavMesh()
+    {
+        for (int z = 0; z < depth; z++)
+        {
+            for (int x = 0; x < width; x++)
+            {
+                if (map[x, z] == 0)
+                {
+                    navMeshSurfaces[x, z].BuildNavMesh();
+                }
+            }
+        }
+    }
+
     void DrawMap()
     {
         for (int z = 1; z < depth-1; z++)
@@ -140,67 +159,82 @@ public class Maze : MonoBehaviour
                 Vector3 pos = new Vector3(x * scale, 0, z * scale);
                 if (Search2D(x, z, new int[] { -1, 0, -1, 1, 0, 1, -1, 0, -1}))
                 {
-                    Instantiate(straight, pos, Quaternion.identity);
+                    GameObject piece = Instantiate(straight, pos, Quaternion.identity);
+                    navMeshSurfaces[x, z] = piece.GetComponent<NavMeshSurface>();
                 }
                 else if (Search2D(x, z, new int[] { -1, 1, -1, 0, 0, 0, -1, 1, -1 }))
                 {
-                    Instantiate(straight, pos, Quaternion.Euler(0, 90, 0));
+                    GameObject piece = Instantiate(straight, pos, Quaternion.Euler(0, 90, 0));
+                    navMeshSurfaces[x, z] = piece.GetComponent<NavMeshSurface>();
                 }
                 //CROSSROADS
                 else if (Search2D(x, z, new int[] { -1, 0, -1, 0, 0, 0, -1, 0, -1 }))
                 {
-                    Instantiate(crossroads, pos, Quaternion.identity);
+                    GameObject piece = Instantiate(crossroads, pos, Quaternion.identity);
+                    navMeshSurfaces[x, z] = piece.GetComponent<NavMeshSurface>();
                 }
                 //CORNERS
                 else if (Search2D(x, z, new int[] { -1, 1, -1, 1, 0, 0, -1, 0, -1 }))
                 {
-                    Instantiate(corner, pos, Quaternion.Euler(0, 90, 0));
+                    GameObject piece = Instantiate(corner, pos, Quaternion.Euler(0, 90, 0));
+                    navMeshSurfaces[x, z] = piece.GetComponent<NavMeshSurface>();
                 }
                 else if (Search2D(x, z, new int[] { -1, 1, -1, 0, 0, 1, -1, 0, -1 }))
                 {
-                    Instantiate(corner, pos, Quaternion.Euler(0, 180, 0));
+                    GameObject piece = Instantiate(corner, pos, Quaternion.Euler(0, 180, 0));
+                    navMeshSurfaces[x, z] = piece.GetComponent<NavMeshSurface>();
                 }
                 else if (Search2D(x, z, new int[] { -1, 0, -1, 0, 0, 1, -1, 1, -1 }))
                 {
-                    Instantiate(corner, pos, Quaternion.Euler(0, -90, 0));
+                    GameObject piece = Instantiate(corner, pos, Quaternion.Euler(0, -90, 0));
+                    navMeshSurfaces[x, z] = piece.GetComponent<NavMeshSurface>();
                 }
                 else if (Search2D(x, z, new int[] { -1, 0, -1, 1, 0, 0, -1, 1, -1 }))
                 {
-                    Instantiate(corner, pos, Quaternion.identity);
+                    GameObject piece = Instantiate(corner, pos, Quaternion.identity);
+                    navMeshSurfaces[x, z] = piece.GetComponent<NavMeshSurface>();
                 }
                 //T-JUNCTIONS
                 else if (Search2D(x, z, new int[] { -1, 1, -1, 0, 0, 0, -1, 0, -1 }))
                 {
-                    Instantiate(tjunction, pos, Quaternion.identity);
+                    GameObject piece = Instantiate(tjunction, pos, Quaternion.identity);
+                    navMeshSurfaces[x, z] = piece.GetComponent<NavMeshSurface>();
                 }
                 else if (Search2D(x, z, new int[] { -1, 0, -1, 1, 0, 0, -1, 0, -1 }))
                 {
-                    Instantiate(tjunction, pos, Quaternion.Euler(0, -90, 0));
+                    GameObject piece = Instantiate(tjunction, pos, Quaternion.Euler(0, -90, 0));
+                    navMeshSurfaces[x, z] = piece.GetComponent<NavMeshSurface>();
                 }
                 else if (Search2D(x, z, new int[] { -1, 0, -1, 0, 0, 1, -1, 0, -1 }))
                 {
-                    Instantiate(tjunction, pos, Quaternion.Euler(0, 90, 0));
+                    GameObject piece = Instantiate(tjunction, pos, Quaternion.Euler(0, 90, 0));
+                    navMeshSurfaces[x, z] = piece.GetComponent<NavMeshSurface>();
                 }
                 else if (Search2D(x, z, new int[] { -1, 0, -1, 0, 0, 0, -1, 1, -1 }))
                 {
-                    Instantiate(tjunction, pos, Quaternion.Euler(0, 180, 0));
+                    GameObject piece = Instantiate(tjunction, pos, Quaternion.Euler(0, 180, 0));
+                    navMeshSurfaces[x, z] = piece.GetComponent<NavMeshSurface>();
                 }
                 //DEAD-ENDS
                 else if (Search2D(x, z, new int[] { -1, 1, -1, 1, 0, 1, -1, 0, -1 }))
                 {
-                    Instantiate(deadend, pos, Quaternion.Euler(0, -90, 0));
+                    GameObject piece = Instantiate(deadend, pos, Quaternion.Euler(0, -90, 0));
+                    navMeshSurfaces[x, z] = piece.GetComponent<NavMeshSurface>();
                 }
                 else if (Search2D(x, z, new int[] { -1, 1, -1, 1, 0, 0, -1, 1, -1 }))
                 {
-                    Instantiate(deadend, pos, Quaternion.Euler(0, 180, 0));
+                    GameObject piece = Instantiate(deadend, pos, Quaternion.Euler(0, 180, 0));
+                    navMeshSurfaces[x, z] = piece.GetComponent<NavMeshSurface>();
                 }
                 else if (Search2D(x, z, new int[] { -1, 1, -1, 0, 0, 1, -1, 1, -1 }))
                 {
-                    Instantiate(deadend, pos, Quaternion.identity);
+                    GameObject piece = Instantiate(deadend, pos, Quaternion.identity);
+                    navMeshSurfaces[x, z] = piece.GetComponent<NavMeshSurface>();
                 }
                 else if (Search2D(x, z, new int[] { -1, 0, -1, 1, 0, 1, -1, 1, -1 }))
                 {
-                    Instantiate(deadend, pos, Quaternion.Euler(0, 90, 0));
+                    GameObject piece = Instantiate(deadend, pos, Quaternion.Euler(0, 90, 0));
+                    navMeshSurfaces[x, z] = piece.GetComponent<NavMeshSurface>();
                 }
             }
         }
