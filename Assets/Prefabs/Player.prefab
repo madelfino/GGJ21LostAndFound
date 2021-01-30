@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 5289984412865139259}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -171,7 +171,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   turnSpeed: 90
-  TextLog: {fileID: 0}
+  infoLog: {fileID: 0}
 --- !u!54 &48029065696911276
 Rigidbody:
   m_ObjectHideFlags: 0

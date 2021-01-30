@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 9111261714728055872}
   m_Layer: 0
   m_Name: Corner_Rounded
-  m_TagString: Untagged
+  m_TagString: MazePiece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -39,10 +39,24 @@ public class Maze : MonoBehaviour
     public GameObject player;
     public GameObject goal;
     public GameObject enemy;
-
-    // Start is called before the first frame update
-    void Start()
+    
+    public void DestroyMaze()
     {
+        GameObject[] mazePieces = GameObject.FindGameObjectsWithTag("MazePiece");
+        foreach( GameObject piece in mazePieces )
+        {
+            GameObject.Destroy(piece);
+        }
+        GameObject.Destroy(GameObject.FindGameObjectWithTag("Player"));
+        GameObject.Destroy(GameObject.FindGameObjectWithTag("Enemy"));
+        GameObject.Destroy(GameObject.FindGameObjectWithTag("Goal"));
+    }
+
+    public void CreateMaze(Vector2 dim)
+    {
+        DestroyMaze();
+        width = (int)dim.x;
+        depth = (int)dim.y;
         map = new byte[width, depth];
         InitializeMap();
         Generate();

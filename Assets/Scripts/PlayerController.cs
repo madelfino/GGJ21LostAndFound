@@ -8,12 +8,14 @@ public class PlayerController : MonoBehaviour
     public float speed = 5f;
     public float turnSpeed = 50f;
     Rigidbody rb;
+    GameManager gm;
 
     public TextMeshProUGUI infoLog;
 
     // Start is called before the first frame update
     void Start()
     {
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
         rb = transform.GetComponent<Rigidbody>();
         infoLog = GameObject.Find("Canvas").GetComponentInChildren<TextMeshProUGUI>();
         Camera.main.GetComponent<CameraController>().target = transform;
@@ -30,7 +32,8 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Goal"))
         {
-            infoLog.text = "Goal Reached";
+            //infoLog.text = "Goal Reached";
+            gm.NextLevel();
         }
     }
 }
