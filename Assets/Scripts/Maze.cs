@@ -57,11 +57,11 @@ public class Maze : MonoBehaviour
         GameObject.Destroy(GameObject.FindGameObjectWithTag("Respawn"));
     }
 
-    public void CreateMaze(Vector2 dim)
+    public void CreateMaze(LevelData level)
     {
         DestroyMaze();
-        width = (int)dim.x;
-        depth = (int)dim.y;
+        width = level.width;
+        depth = level.depth;
         map = new byte[width, depth];
         navMeshSurfaces = new NavMeshSurface[width, depth];
         InitializeMap();
@@ -70,7 +70,10 @@ public class Maze : MonoBehaviour
         GenerateNavMesh();
         CreatePlayer();
         CreateGoal();
-        CreateEnemy();
+        if (level.hasEnemy)
+        {
+            CreateEnemy();
+        }
     }
 
     public virtual void CreatePlayer()

@@ -2,27 +2,41 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public class LevelData
+{
+    public int width, depth;
+    public bool hasEnemy;
+
+    public LevelData(int w, int d, bool en)
+    {
+        width = w;
+        depth = d;
+        hasEnemy = en;
+    }
+}
+
 public class GameManager : MonoBehaviour
 {
     private int level;
     private Maze maze;
 
-    private Vector2[] levelSizes;
-
-    // Start is called before the first frame update
+    private LevelData[] levels;
+    
     void Start()
     {
-        levelSizes = new Vector2[] {
-            new Vector2(10,10),
-            new Vector2(15,10),
-            new Vector2(15,20),
-            new Vector2(30,30),
+        levels = new LevelData[]
+        {
+            new LevelData(3, 20, false),
+            new LevelData(5, 10, false),
+            new LevelData(7, 15, true),
+            new LevelData(20, 20, true),
+            new LevelData(30, 30, true)
         };
 
         level = 0;
 
         maze = GameObject.Find("Maze").GetComponent<Maze>();
-        maze.CreateMaze(levelSizes[0]);
+        maze.CreateMaze(levels[0]);
     }
 
     // Update is called once per frame
@@ -34,6 +48,13 @@ public class GameManager : MonoBehaviour
     public void NextLevel()
     {
         level++;
-        maze.CreateMaze(levelSizes[level % levelSizes.Length]);
+        if (level < levels.Length)
+        {
+            Debug.Log("Loading Level " + level);
+            maze.CreateMaze(levels[level]);
+        } else
+        {
+            //YOU WIN!!
+        }
     }
 }
