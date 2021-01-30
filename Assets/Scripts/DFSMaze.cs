@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class DFSMaze : Maze
 {
-    int startX;
-    int startZ;
     int longestPathLength;
 
+    MapLocation startLocation;
     MapLocation goalLocation;
+    MapLocation enemyLocation;
 
     public override void Generate()
     {
-        startX = Random.Range(1, width-1);
-        startZ = 1; //Random.Range(1, depth-1);
-        goalLocation = new MapLocation(startX, startZ);
+        startLocation = new MapLocation(Random.Range(1, width - 1), 1);
+        goalLocation = new MapLocation(startLocation.x, startLocation.z);
+        enemyLocation = new MapLocation(startLocation.x, startLocation.z);
         longestPathLength = 0;
-        Generate(startX, startZ, 0);
+        Generate(startLocation.x, startLocation.z, 0);
     }
 
     void Generate(int x, int z, int pathLength)
@@ -26,6 +26,8 @@ public class DFSMaze : Maze
 
         if (pathLength > longestPathLength)
         {
+            enemyLocation.x = goalLocation.x;
+            enemyLocation.z = goalLocation.z;
             longestPathLength = pathLength;
             goalLocation.x = x;
             goalLocation.z = z;
@@ -41,7 +43,12 @@ public class DFSMaze : Maze
 
     public override void CreatePlayer()
     {
-        Instantiate(player, new Vector3(startX * scale, 0.5f * scale, startZ * scale), Quaternion.identity);
+        Instantiate(player, new Vector3(startLocation.x * scale, 0.5f * scale, startLocation.z * scale), Quaternion.identity);
+    }
+
+    public override void CreateEnemy()
+    {
+        Instantiate(enemy, new Vector3(enemyLocation.x * scale, 0.5f, enemyLocation.z * scale), Quaternion.identity);
     }
 
     public override void CreateGoal()
