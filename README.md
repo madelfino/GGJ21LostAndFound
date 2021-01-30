@@ -6,6 +6,7 @@ Theme: Lost And Found
 
 Team:
 - Michael Delfino - programmer and 3D artist
+- Random Strat Productions - Music scoring
 
 License: Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)
 
