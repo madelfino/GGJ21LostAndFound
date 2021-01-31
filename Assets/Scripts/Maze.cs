@@ -58,10 +58,12 @@ public class Maze : MonoBehaviour
             piece.GetComponent<NavMeshSurface>().RemoveData();
             GameObject.Destroy(piece);
         }
-        GameObject.Destroy(GameObject.FindGameObjectWithTag("Player"));
-        GameObject.Destroy(GameObject.FindGameObjectWithTag("Enemy"));
-        GameObject.Destroy(GameObject.FindGameObjectWithTag("Goal"));
-        GameObject.Destroy(GameObject.FindGameObjectWithTag("Respawn"));
+
+        Destroy(GameObject.FindGameObjectWithTag("Player"));
+        Destroy(GameObject.FindGameObjectWithTag("Goal"));
+        Destroy(GameObject.FindGameObjectWithTag("Respawn"));
+        if (GameObject.FindGameObjectWithTag("Enemy") != null)
+            Destroy(GameObject.FindGameObjectWithTag("Enemy"));
     }
 
     public void CreateMaze(LevelData level)
@@ -74,6 +76,10 @@ public class Maze : MonoBehaviour
         map = new byte[width, depth];
         enemyTimer = level.timeUntilEnemy;
         xeno = false;
+        if (level.levelnum == -1)
+        {
+            xeno = true;
+        }
         navMeshSurfaces = new NavMeshSurface[width, depth];
         InitializeMap();
         Generate();

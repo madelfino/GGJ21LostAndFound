@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelData
 {
@@ -51,11 +52,12 @@ public class GameManager : MonoBehaviour
         level++;
         if (level < levels.Length)
         {
-            Debug.Log("Loading Level " + level);
+            Debug.Log("Loading level " + level);
+            maze.GetComponent<Maze>().textDisplay.text = "Teleporting to next level...";
             maze.CreateMaze(levels[level]);
         } else
         {
-            //YOU WIN!!
+            SceneManager.LoadScene("WinScreen");
         }
     }
 }
