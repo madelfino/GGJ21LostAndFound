@@ -95,7 +95,7 @@ public class Maze : MonoBehaviour
         enemyTimer -= Time.deltaTime;
         if (!xeno)
         {
-            textDisplay.text = "" + (int)(enemyTimer + 1);
+            if (enemyTimer < 11) textDisplay.text = "" + (int)(enemyTimer + 1);
             if (enemyTimer < 0)
             {
                 xeno = true;
