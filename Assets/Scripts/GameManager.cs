@@ -29,8 +29,8 @@ public class GameManager : MonoBehaviour
             new LevelData(3, 20, false),
             new LevelData(5, 10, false),
             new LevelData(7, 15, true),
-            new LevelData(20, 20, true),
-            new LevelData(30, 30, true)
+            new LevelData(15, 15, true),
+            new LevelData(20, 20, true)
         };
 
         level = 0;

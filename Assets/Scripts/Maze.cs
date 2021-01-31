@@ -49,6 +49,7 @@ public class Maze : MonoBehaviour
         GameObject[] mazePieces = GameObject.FindGameObjectsWithTag("MazePiece");
         foreach( GameObject piece in mazePieces )
         {
+            piece.GetComponent<NavMeshSurface>().RemoveData();
             GameObject.Destroy(piece);
         }
         GameObject.Destroy(GameObject.FindGameObjectWithTag("Player"));
