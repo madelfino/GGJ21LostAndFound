@@ -32,9 +32,9 @@ public class GameManager : MonoBehaviour
             new LevelData(1, 5, 10, 6),
             new LevelData(2, 7, 15, 30),
             new LevelData(3, 15, 12, 60),
-            new LevelData(4, 16, 16, 120),
-            new LevelData(5, 18, 20, 120),
-            new LevelData(6, 25, 20, 120),
+            new LevelData(4, 16, 16, 60),
+            new LevelData(5, 18, 20, 80),
+            new LevelData(6, 25, 20, 100),
             new LevelData(7, 30, 30, 120)
         };
 
