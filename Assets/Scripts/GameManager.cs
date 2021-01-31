@@ -5,14 +5,14 @@ using UnityEngine;
 public class LevelData
 {
     public int width, depth, levelnum;
-    public bool hasEnemy;
+    public float timeUntilEnemy;
 
-    public LevelData(int n, int w, int d, bool en)
+    public LevelData(int n, int w, int d, float t)
     {
         levelnum = n;
         width = w;
         depth = d;
-        hasEnemy = en;
+        timeUntilEnemy = t;
     }
 }
 
@@ -27,11 +27,11 @@ public class GameManager : MonoBehaviour
     {
         levels = new LevelData[]
         {
-            new LevelData(0, 3, 20, false),
-            new LevelData(1, 5, 10, false),
-            new LevelData(2, 7, 15, true),
-            new LevelData(3, 15, 15, true),
-            new LevelData(4, 20, 20, true)
+            new LevelData(0, 3, 20, 3.5f),
+            new LevelData(1, 5, 10, 6),
+            new LevelData(2, 7, 15, 30),
+            new LevelData(3, 15, 15, 60),
+            new LevelData(4, 20, 20, 120)
         };
 
         level = 0;

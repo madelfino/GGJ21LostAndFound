@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
+using UnityStandardAssets.Characters.ThirdPerson;
 
 public class DFSMaze : Maze
 {
@@ -49,8 +51,8 @@ public class DFSMaze : Maze
 
     public override void CreateEnemy()
     {
-        GameObject enemyInst = Instantiate(enemy, new Vector3(enemyLocation.x * scale, height + 0.5f, enemyLocation.z * scale), Quaternion.identity);
-        enemyInst.GetComponent<Xenotaur>().MoveToLocation(new Vector3(startLocation.x * scale, height + 0.5f * scale, startLocation.z * scale));
+        GameObject enemyInst = Instantiate(enemy, new Vector3(startLocation.x * scale, height + 0.5f, startLocation.z * scale), Quaternion.identity);
+        enemyInst.GetComponent<AICharacterControl>().SetTarget(GameObject.FindGameObjectWithTag("Player").transform);
     }
 
     public override void CreateGoal()

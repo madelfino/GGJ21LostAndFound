@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using TMPro;
 
 public class MapLocation
 {
@@ -31,6 +32,8 @@ public class Maze : MonoBehaviour
     public int height = 0;
     public int scale = 3;
     public byte[,] map;
+    public float enemyTimer = 600;
+    private bool xeno = true;
 
     public GameObject straight;
     public GameObject corner;
@@ -43,7 +46,9 @@ public class Maze : MonoBehaviour
     public GameObject enemy;
     public GameObject startPad;
 
-    private NavMeshSurface[,] navMeshSurfaces; 
+    private NavMeshSurface[,] navMeshSurfaces;
+
+    public TextMeshProUGUI textDisplay;
     
     public void DestroyMaze()
     {
@@ -61,11 +66,14 @@ public class Maze : MonoBehaviour
 
     public void CreateMaze(LevelData level)
     {
+        textDisplay.text = "Teleporting to next level...";
         DestroyMaze();
         width = level.width;
         depth = level.depth;
         height = level.levelnum * 10;
         map = new byte[width, depth];
+        enemyTimer = level.timeUntilEnemy;
+        xeno = false;
         navMeshSurfaces = new NavMeshSurface[width, depth];
         InitializeMap();
         Generate();
@@ -73,10 +81,23 @@ public class Maze : MonoBehaviour
         GenerateNavMesh();
         CreatePlayer();
         CreateGoal();
-        if (level.hasEnemy)
+        textDisplay.text = "";
+    }
+
+    public void Update()
+    {
+        enemyTimer -= Time.deltaTime;
+        if (!xeno)
         {
-            CreateEnemy();
+            textDisplay.text = "" + (int)(enemyTimer + 1);
+            if (enemyTimer < 0)
+            {
+                xeno = true;
+                CreateEnemy();
+                textDisplay.text = "The Xenotaur is coming";
+            }
         }
+        
     }
 
     public virtual void CreatePlayer()

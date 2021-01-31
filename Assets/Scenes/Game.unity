@@ -482,7 +482,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
@@ -744,7 +744,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4278625282
-  m_fontColor: {r: 0.009077947, g: 0.6415094, b: 0.022967814, a: 1}
+  m_fontColor: {r: 0.6431373, g: 0.059078526, b: 0.00784313, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -879,7 +879,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: 10
   depth: 10
+  height: 0
   scale: 3
+  enemyTimer: 600
   straight: {fileID: 7404794181185492055, guid: f169202cd06c2cc46ba7b10e17e40aa5,
     type: 3}
   corner: {fileID: 2782837985189061797, guid: 5fa355494f12ed54e8587bb6a1eca831, type: 3}
@@ -890,6 +892,7 @@ MonoBehaviour:
   deadend: {fileID: 4917953362305775899, guid: 6c26431d290eaf543ac1e34e99f66f69, type: 3}
   player: {fileID: 100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
   goal: {fileID: 6287592848896015429, guid: 97a3f96a5d0dddb4aa033eb2601a3aeb, type: 3}
-  enemy: {fileID: 7880661732428290800, guid: c176a1e3cb2d3374aa5677c0733b53b6, type: 3}
+  enemy: {fileID: 113348, guid: 54eb5844754051b40a918a84c33b7c1a, type: 3}
   startPad: {fileID: 2784925294604686371, guid: d7dda3716a019ea45bf941ebdc17036b,
     type: 3}
+  textDisplay: {fileID: 1337924672}
