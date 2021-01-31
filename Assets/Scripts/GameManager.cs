@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class LevelData
 {
-    public int width, depth;
+    public int width, depth, levelnum;
     public bool hasEnemy;
 
-    public LevelData(int w, int d, bool en)
+    public LevelData(int n, int w, int d, bool en)
     {
+        levelnum = n;
         width = w;
         depth = d;
         hasEnemy = en;
@@ -26,11 +27,11 @@ public class GameManager : MonoBehaviour
     {
         levels = new LevelData[]
         {
-            new LevelData(3, 20, false),
-            new LevelData(5, 10, false),
-            new LevelData(7, 15, true),
-            new LevelData(15, 15, true),
-            new LevelData(20, 20, true)
+            new LevelData(0, 3, 20, false),
+            new LevelData(1, 5, 10, false),
+            new LevelData(2, 7, 15, true),
+            new LevelData(3, 15, 15, true),
+            new LevelData(4, 20, 20, true)
         };
 
         level = 0;

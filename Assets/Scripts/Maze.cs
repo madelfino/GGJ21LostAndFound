@@ -28,6 +28,7 @@ public class Maze : MonoBehaviour
 
     public int width = 30;
     public int depth = 30;
+    public int height = 0;
     public int scale = 3;
     public byte[,] map;
 
@@ -63,6 +64,7 @@ public class Maze : MonoBehaviour
         DestroyMaze();
         width = level.width;
         depth = level.depth;
+        height = level.levelnum * 10;
         map = new byte[width, depth];
         navMeshSurfaces = new NavMeshSurface[width, depth];
         InitializeMap();
@@ -86,8 +88,8 @@ public class Maze : MonoBehaviour
             x = Random.Range(1, width - 1);
             z = Random.Range(1, depth - 1);
         }
-        Instantiate(player, new Vector3(x * scale, 0.5f * scale, z * scale), Quaternion.identity);
-        Instantiate(startPad, new Vector3(x * scale, 0, z * scale), Quaternion.identity);
+        Instantiate(player, new Vector3(x * scale, height + 0.5f * scale, z * scale), Quaternion.identity);
+        Instantiate(startPad, new Vector3(x * scale, height + 0, z * scale), Quaternion.identity);
     }
 
     public virtual void CreateGoal()
@@ -99,7 +101,7 @@ public class Maze : MonoBehaviour
             x = Random.Range(1, width - 1);
             z = Random.Range(1, depth - 1);
         }
-        Instantiate(goal, new Vector3(x * scale, 0, z * scale), Quaternion.identity);
+        Instantiate(goal, new Vector3(x * scale, height + 0, z * scale), Quaternion.identity);
     }
 
     public virtual void CreateEnemy()
@@ -111,7 +113,7 @@ public class Maze : MonoBehaviour
             x = Random.Range(1, width - 1);
             z = Random.Range(1, depth - 1);
         }
-        Instantiate(enemy, new Vector3(x * scale, 0.5f * scale, z * scale), Quaternion.identity);
+        Instantiate(enemy, new Vector3(x * scale, height + 0.5f * scale, z * scale), Quaternion.identity);
     }
 
     void InitializeMap()
@@ -160,7 +162,7 @@ public class Maze : MonoBehaviour
         {
             for (int x = 1; x < width-1; x++)
             {
-                Vector3 pos = new Vector3(x * scale, 0, z * scale);
+                Vector3 pos = new Vector3(x * scale, height, z * scale);
                 if (Search2D(x, z, new int[] { -1, 0, -1, 1, 0, 1, -1, 0, -1}))
                 {
                     GameObject piece = Instantiate(straight, pos, Quaternion.identity);
